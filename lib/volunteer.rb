@@ -38,6 +38,19 @@ class Volunteer
     end
   end
 
+  def self.all_volunteers_by_project(project_id)
+    all_volunteers = []
+    returned_volunteers = DB.exec("SELECT * FROM volunteers WHERE project_id = #{project_id}")
+    returned_volunteers.each do |volunteer|
+      id = volunteer.fetch('id').to_i
+      name = volunteer.fetch('name')
+      project_id = volunteer.fetch('project_id').to_i
+      all_volunteers.push(Volunteer.new({:id => id, :name => name, :project_id => project_id}))
+    end
+    return all_volunteers
+  end
+
+
   def ==(another_volunteer)
     self.name().==(another_volunteer.name()).&(self.id().==(another_volunteer.id()))
   end

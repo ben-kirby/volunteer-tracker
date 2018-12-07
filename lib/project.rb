@@ -40,6 +40,14 @@ class Project
     DB.exec("UPDATE projects SET title = '#{@title}' WHERE id = '#{self.id}';")
   end
 
+  def volunteers
+    Volunteer.all_volunteers_by_project(self.id)
+  end
+
+  def delete
+    DB.exec("DELETE FROM projects WHERE id = #{self.id}")
+  end
+
 
   def ==(another_project)
     self.title().==(another_project.title()).&(self.id().==(another_project.id()))
