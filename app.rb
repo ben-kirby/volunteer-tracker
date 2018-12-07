@@ -24,5 +24,11 @@ post '/add_volunteer' do
 end
 
 get '/view_volunteer' do
-  "Hello World"
+  @volunteers = Volunteer.all
+  erb(:view_volunteer)
+end
+
+post '/view_volunteer' do
+  @volunteers = Volunteer.all
+  erb(:view_volunteer)
 end
