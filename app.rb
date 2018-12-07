@@ -53,13 +53,24 @@ post '/add_project' do
 end
 
 get '/edit_project' do
+  @disp = 0
   @projects = Project.all
 
   erb(:edit_project)
 end
 
-post '/edit_project/:id' do
+get '/edit_project/:id' do
+  @disp = 1
   @projects = Project.all
   @project = Project.find(params.fetch('id'))
+  erb(:edit_project)
+end
+
+patch("/edit_project/:id") do
+  title = params.fetch("title")
+  @project = Project.find(params.fetch("id").to_i())
+  @project.update({:title => title})
+  @projects = Project.all
+  @disp = 0
   erb(:edit_project)
 end
