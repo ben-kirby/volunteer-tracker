@@ -25,10 +25,6 @@ class Project
     @id = save.first().fetch("id").to_i
   end
 
-  def ==(another_project)
-    self.title().==(another_project.title()).&(self.id().==(another_project.id()))
-  end
-
   def self.find(id)
     all_projects = DB.exec("SELECT * FROM projects WHERE id = #{id};")
     all_projects.each do |project|
@@ -39,4 +35,7 @@ class Project
   end
 
 
+  def ==(another_project)
+    self.title().==(another_project.title()).&(self.id().==(another_project.id()))
+  end
 end
