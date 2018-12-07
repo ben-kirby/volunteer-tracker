@@ -9,11 +9,11 @@ class Project
     @title = attributes.fetch(:title)
   end
 
-  def all
+  def self.all
     all_projects = []
     returned_projects = DB.exec("SELECT * FROM projects;")
     returned_projects.each do |project|
-      id = project.fecth('id').to_i
+      id = project.fetch('id').to_i
       title = project.fetch('title')
       all_projects.push(Project.new({:id => id, :title => title}))
     end
@@ -23,6 +23,10 @@ class Project
   def save
     save = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;")
     @id = save.first().fetch("id").to_i
+  end
+
+  def ==(another_project)
+    self.title().==(another_project.title()).&(self.id().==(another_project.id()))
   end
 
 
