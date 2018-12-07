@@ -34,6 +34,14 @@ class Project
     end
   end
 
+  def update(attributes)
+    new_title = attributes.fetch(:title)
+    DB.exec("UPDATE projects SET title = '#{new_title}' WHERE id = '#{self.id}';")
+
+    return Project.find(self.id)
+
+  end
+
 
   def ==(another_project)
     self.title().==(another_project.title()).&(self.id().==(another_project.id()))
