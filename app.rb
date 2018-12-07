@@ -13,14 +13,19 @@ end
 
 get '/add_volunteer' do
   @volunteers = Volunteer.all
+  @projects = Project.all
   erb(:add_volunteer)
 end
 
 post '/add_volunteer' do
-  name = params.fetch('name')
-  new_volunteer = Volunteer.new({:id => nil, :name => name, :project_id => 0})
-  new_volunteer.save
+  @projects = Project.all
   @volunteers = Volunteer.all
+
+  name = params.fetch('name')
+  project_id = params.fetch('project_id')
+  new_volunteer = Volunteer.new({:id => nil, :name => name, :project_id => project_id})
+  new_volunteer.save
+
   erb(:add_volunteer)
 end
 
@@ -71,6 +76,14 @@ patch("/edit_project/:id") do
   @project = Project.find(params.fetch("id").to_i())
   @project.update({:title => title})
   @projects = Project.all
+  @disp = 0
+  erb(:edit_project)
+end
+
+delete("/edit_project/:id") do
+  @project = Project.find(params.fetch("id").to_i())
+  @project.delete()
+  @projects = Project.all()
   @disp = 0
   erb(:edit_project)
 end
