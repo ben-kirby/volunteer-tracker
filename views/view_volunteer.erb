@@ -3,23 +3,32 @@
     <form action="/view_volunteer" method="post">
       <div class="form-group">
         <label>Pick a volunteer:</label>
-        <select name="name" class="form-control" id="exampleFormControlSelect1">
+        <select name="id" class="form-control" id="exampleFormControlSelect1">
           <%@volunteers.each do |volunteer|%>
-          <option value="<%= volunteer.name %>"><%= volunteer.name %></option>
+          <option value=<%= volunteer.id %>><%= volunteer.name %></option>
           <%end%>
         </select>
       </div>
+      <button class="btn btn-primary" type="submit">Give me the 411</button>
     </form>
   </div>
+
   <br>
+<% unless @volunteer == nil %>
   <div class="row">
     <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src=".../100px180/" alt="Card image cap">
+      <img class="card-img-top" src=".../100px180/" alt="<%= @volunteer.name%>">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <h5 class="card-title"><%= @volunteer.name%></h5>
+        <p class="card-text">
+          Meet <%= @volunteer.name %>! They enjoy long walks on the beach.. so they can pick up trash while volunteering for their favorite organization! </p>
+          <%if @project == false %>
+            <p>They're not assigned to any projects right now! Put them to work by returning to the home page and assigning them to an existing project.</p>
+          <% else %>
+            <p>Currently they're working on the <%= @project.title%> project.</p>
+          <% end %>
       </div>
     </div>
   </div>
+  <% end %>
 </div>

@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <form action="/edit_project/<%=  %>" method="post">
+      <input name="_method" type="hidden" value="patch">
+      <div class="form-group">
+        <label>Pick a project:</label>
+        <select name="id" class="form-control" id="exampleFormControlSelect1">
+          <%@projects.each do |project|%>
+          <option value="<%= project.id %>"><%= project.title %></option>
+          <%end%>
+        </select>
+      </div>
+      <button class="btn btn-primary" type="submit">Edit</button>
+    </form>
+  </div>
