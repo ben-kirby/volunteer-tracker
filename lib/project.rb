@@ -21,7 +21,7 @@ class Project
   end
 
   def save
-    save = DB.exec("INSERT INTO projects (name) VALUES ('#{@title}') RETURNING id;")
+    save = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;")
     @id = save.first().fetch("id").to_i
   end
 
