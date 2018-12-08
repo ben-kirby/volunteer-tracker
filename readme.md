@@ -21,6 +21,7 @@ This web app is a volunteer management system for use by the volunteer coordinat
 ## Known Bugs
 
 * The "Give me the 411" button on the view volunteer page does not work.
+* The delete function was working but broke at some point.
 
 ## Technologies Used
 
