@@ -7,17 +7,17 @@ require('pry')
 
 DB = PG.connect({:dbname => 'volunteer_tracker'})
 
-get '/' do
+get ('/') do
   erb(:index)
 end
 
-get '/add_volunteer' do
+get ('/add_volunteer') do
   @volunteers = Volunteer.all
   @projects = Project.all
   erb(:add_volunteer)
 end
 
-post '/add_volunteer' do
+post ('/add_volunteer') do
   @projects = Project.all
   @volunteers = Volunteer.all
 
@@ -29,13 +29,13 @@ post '/add_volunteer' do
   erb(:add_volunteer)
 end
 
-get '/view_volunteer' do
+get ('/view_volunteer') do
   @disp = false
   @volunteers = Volunteer.all
   erb(:view_volunteer)
 end
 
-post '/view_volunteer' do
+post ('/view_volunteer') do
   @disp = true
   id = params.fetch('id')
   @volunteer = Volunteer.find(id)
@@ -44,12 +44,12 @@ post '/view_volunteer' do
   erb(:view_volunteer)
 end
 
-get '/add_project' do
+get ('/add_project') do
   @projects = Project.all
   erb(:add_project)
 end
 
-post '/add_project' do
+post ('/add_project') do
   title = params.fetch('title')
   new_project = Project.new({:id => nil, :title => title})
   new_project.save
@@ -58,14 +58,14 @@ post '/add_project' do
   erb(:add_project)
 end
 
-get '/edit_project' do
+get ('/edit_project') do
   @disp = 0
   @projects = Project.all
 
   erb(:edit_project)
 end
 
-get '/edit_project/:id' do
+get ('/edit_project/:id') do
   @disp = 1
   @projects = Project.all
   @project = Project.find(params.fetch('id'))
@@ -89,14 +89,14 @@ delete("/edit_project/:id") do
   erb(:edit_project)
 end
 
-get '/manage_assignments' do
+get ('/manage_assignments') do
   @projects = Project.all
   @volunteers = Volunteer.all
 
   erb(:manage_assignments)
 end
 
-post '/manage_assignments' do
+post ('/manage_assignments') do
   project_id = params.fetch('project').to_i
 
   @volunteer = Volunteer.find(params.fetch('name').to_i)
