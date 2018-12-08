@@ -17,6 +17,7 @@ This web app is a volunteer management system for use by the volunteer coordinat
 * Launch psql and connect to the non-test database
 * In a new shell window (make sure you're still in the project's root folder) run `ruby app.rb`
 * In a browser, navigate to http://localhost:4567
+* Hosted on Heroku at https://arcane-ocean-30385.herokuapp.com/
 ## Known Bugs
 
 * The "Give me the 411" button on the view volunteer page does not work.
@@ -30,5 +31,5 @@ This web app is a volunteer management system for use by the volunteer coordinat
 
 ### License
 
-*Copyright (c) 2018 Ben Kirby* 
+*Copyright (c) 2018 Ben Kirby*
 *This software is licensed under the MIT license.*
