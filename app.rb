@@ -30,12 +30,13 @@ post '/add_volunteer' do
 end
 
 get '/view_volunteer' do
-  @volunteer = nil
+  @disp = false
   @volunteers = Volunteer.all
   erb(:view_volunteer)
 end
 
 post '/view_volunteer' do
+  @disp = true
   id = params.fetch('id')
   @volunteer = Volunteer.find(id)
   @project = Project.find(@volunteer.project_id)
@@ -86,4 +87,23 @@ delete("/edit_project/:id") do
   @projects = Project.all()
   @disp = 0
   erb(:edit_project)
+end
+
+get '/manage_assignments' do
+  @projects = Project.all
+  @volunteers = Volunteer.all
+
+  erb(:manage_assignments)
+end
+
+post '/manage_assignments' do
+  project_id = params.fetch('project').to_i
+
+  @volunteer = Volunteer.find(params.fetch('name').to_i)
+  @volunteer.update({:project_id => project_id})
+
+  @volunteers = Volunteer.all
+  @projects = Project.all
+
+  erb(:manage_assignments)
 end

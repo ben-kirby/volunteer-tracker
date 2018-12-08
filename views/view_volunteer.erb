@@ -12,23 +12,3 @@
       <button class="btn btn-primary" type="submit">Give me the 411</button>
     </form>
   </div>
-
-  <br>
-<% unless @volunteer == nil %>
-  <div class="row">
-    <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src=".../100px180/" alt="<%= @volunteer.name%>">
-      <div class="card-body">
-        <h5 class="card-title"><%= @volunteer.name%></h5>
-        <p class="card-text">
-          Meet <%= @volunteer.name %>! They enjoy long walks on the beach.. so they can pick up trash while volunteering for their favorite organization! </p>
-          <%if @project == false %>
-            <p>They're not assigned to any projects right now! Put them to work by returning to the home page and assigning them to an existing project.</p>
-          <% else %>
-            <p>Currently they're working on the <%= @project.title%> project.</p>
-          <% end %>
-      </div>
-    </div>
-  </div>
-  <% end %>
-</div>
