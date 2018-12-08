@@ -72,7 +72,7 @@ get ('/edit_project/:id') do
   erb(:edit_project)
 end
 
-patch("/edit_project/:id") do
+patch ("/edit_project/:id") do
   title = params.fetch("title")
   @project = Project.find(params.fetch("id").to_i())
   @project.update({:title => title})
@@ -81,9 +81,9 @@ patch("/edit_project/:id") do
   erb(:edit_project)
 end
 
-delete("/edit_project/:id") do
+delete ("/edit_project/:id") do
   @project = Project.find(params.fetch("id").to_i())
-  @project.delete()
+  @project.delete
   @projects = Project.all()
   @disp = 0
   erb(:edit_project)
